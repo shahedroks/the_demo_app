@@ -1,7 +1,12 @@
+
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:workpleis/core/widget/global_back_button.dart';
+
+import '../../../core/widget/global_back_button.dart';
+import '../widget/categoryAddmenu.dart';
+import '../widget/categoryMenuSheet.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -13,6 +18,28 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  
+  void showCategoryMenuSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black.withOpacity(0.25),
+      isScrollControlled: true,
+      builder: (_) => const CategoryMenuSheet(),
+    );
+  }
+
+  void showCategoryAddMenuSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black.withOpacity(0.25),
+      isScrollControlled: true,
+      builder: (_) => const CategoryAddMenu (),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     int _selectedIndex = 2;
@@ -96,8 +123,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               // ✅ Top bar (same to same)
               _TopBar(
                 onBack: () => Navigator.pop(context),
-                onMenu: () {},
-                onAdd: () {},
+                onMenu: () =>showCategoryMenuSheet(context),
+                onAdd: () =>showCategoryAddMenuSheet(context),
               ),
 
               SizedBox(height: 14.h),
@@ -186,13 +213,20 @@ class _TopBar extends StatelessWidget {
                   iconColor: const Color(0xFF111827),
                 ),
                 SizedBox(width: 15.w),
+
                 _CircleIconButton(
-                  image: "assets/6458ec77e1fc16af4bcfaa1f33295b2acb661edb.png",
                   icon: Icons.add,
                   onTap: onAdd,
-                  borderColor: const Color(0xFF0088FE),
-                  iconColor: const Color(0xFF0088FE),
+                  borderColor: const Color(0xFFE6E8EE),
+                  iconColor: const Color(0xFF111827),
                 ),
+                // _CircleIconButton(
+                //   image: "assets/6458ec77e1fc16af4bcfaa1f33295b2acb661edb.png",
+                //   icon: Icons.add,
+                //   onTap: onAdd,
+                //   borderColor: const Color(0xFF0088FE),
+                //   iconColor: const Color(0xFF0088FE),
+                // ),
               ],
             ),
           ),
@@ -240,16 +274,16 @@ class ZoneItem {
   final String bg;
   final String icon;
   final double? size;
-  final double?  widht;
-  final double?  hight;
+  final double? width;
+  final double? height;
 
   const ZoneItem({
     required this.title,
     required this.bg,
     required this.icon,
     this.size,
-    this.widht,
-    this.hight,
+    this.width,
+    this.height,
   });
 }
 
@@ -268,8 +302,8 @@ class ZoneCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final radius = 26.r;
-    final width = item.size != null ? item.size: item.widht;
-    final height = item.size != null ? item.size: item.hight;
+    final iconW = item.size ?? item.width;
+    final iconH = item.size ?? item.height;
 
     return GestureDetector(
       onTap: onTap,
@@ -312,8 +346,8 @@ class ZoneCard extends StatelessWidget {
                 size: 74,
                 child: Image.asset(
                   item.icon,
-                  width: width?.w,
-                  height: height?.h,
+                  width: iconW?.w,
+                  height: iconH?.h,
                   fit: BoxFit.contain,
                 ),
               ),

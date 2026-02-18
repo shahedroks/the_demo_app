@@ -41,11 +41,8 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
   // Colors
   static const Color _kTextPrimary = Color(0xFF111827);
   static const Color _kTextSecondary = Color(0xFF6B7280);
-  static const Color _kIconGrey = Color(0xFF6B7280);
   static const Color _kDestructiveRed = Color(0xFFFE019A);
   static const Color _kSheetBg = Color(0xFFF3F4F6);
-  static const Color _kCardBg = Colors.white;
-  static const Color _kDivider = Color(0xFFE5E7EB);
   static const Color _kBlue = Color(0xFF0088FE);
 
   @override
@@ -63,6 +60,12 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
       setState(() => _dashboardDropdownOpen = false);
     }
   }
+
+  
+  // bool select = true;
+  // late  ValueChanged<bool> onChanged;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +95,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                       // Rename Card
                       _Card(
                         child: _EditSheetRow(
-                          imagePath: 'assets/images/rename.png',
+                          imagePath: 'assets/images/Erename.png',
                           iconWidth: 22.w,
                           iconHeight: 22.h,
                           label: 'Rename',
@@ -103,7 +106,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: 14.sp,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w400,
                                 color: _kTextSecondary,
                                 fontFamily: 'Inter',
@@ -168,7 +171,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                                 children: [
                                   _ChipPill(
                                     text: 'Light',
-                                    bg: Colors.white,
+                                    bg: Colors. white,
                                     border: _kBlue,
                                     textColor: _kBlue,
                                   ),
@@ -184,7 +187,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                               onTap: () {},
                             ),
 
-                            SizedBox(height: 12.h),
+                            SizedBox(height: 10.h),
 
                             // Last activities (big switch)
                             _EditSheetRow(
@@ -193,17 +196,52 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                               iconHeight: 26.h,
                               label: 'Last activities',
                               trailing: Transform.scale(
-                                scale: 1.05,
-                                child: Switch(
-                                  value: _lastActivitiesOn,
-                                  onChanged: (v) =>
-                                      setState(() => _lastActivitiesOn = v),
-                                  activeColor: Colors.white,
-                                  activeTrackColor: _kBlue,
-                                  inactiveThumbColor: Colors.white,
-                                  inactiveTrackColor:
-                                  const Color(0xFFE5E7EB),
+                                scale: 1.00,
+                                child: GestureDetector(
+                                  onTap: () => setState(() => _lastActivitiesOn = !_lastActivitiesOn),
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 180),
+                                    width: 60.w,
+                                    height: 35.h,
+                                    padding: EdgeInsets.all(2.w),
+                                    decoration: BoxDecoration(
+                                      color:   _lastActivitiesOn
+                                          ? const Color(0xFF0088FE)
+                                          : const Color(0xFFE1E1E1),
+                                      borderRadius: BorderRadius.circular(30.r),
+                                    ),
+                                    child: AnimatedAlign(
+                                      duration: const Duration(milliseconds: 180),
+                                      curve: Curves.easeOut,
+                                      alignment:  _lastActivitiesOn
+                                          ? Alignment.centerRight
+                                          : Alignment.centerLeft,
+                                      child: Container(
+                                        width: 31.w,
+                                        height: 31.w,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
+
+                                // SizedBox(
+                                //   height: 35.h,
+                                //   width: 60.w,
+                                //   child: Switch(
+                                //     value: _lastActivitiesOn,
+                                //     onChanged: (v) =>
+                                //         setState(() => _lastActivitiesOn = v),
+                                //     activeColor: Colors.white,
+                                //     activeTrackColor: _kBlue,
+                                //     inactiveThumbColor: Colors.white,
+                                //     inactiveTrackColor:
+                                //     const Color(0xFFE5E7EB),
+                                //   ),
+                                // ),
                               ),
                             ),
                           ],
@@ -228,7 +266,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                               imagePath: 'assets/images/delete1.png',
                               iconWidth: 16.w,
                               iconHeight: 19.h,
-                              label: 'Remove',
+                              label: 'Delete device',
                               isDestructive: true,
                               onTap: () {},
                             ),
@@ -245,6 +283,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
 
             // ===== Outside tap closes dropdown =====
             if (_dashboardDropdownOpen)
+              
               Positioned.fill(
                 child: GestureDetector(
                   onTap: _closeDashboardMenu,
@@ -255,18 +294,22 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
 
             // ===== Dropdown overlay (on top, auto positioned under trigger) =====
             if (_dashboardDropdownOpen)
-              CompositedTransformFollower(
-                link: _dropdownLink,
-                showWhenUnlinked: false,
-                offset: Offset(-10.w, 36.h), // trigger এর নিচে
-                child: _DashboardDropdownMenu(
-                  width: 230.w,
-                  items: _dashboards,
-                  selectedIndex: _selectedDashboardIndex,
-                  onSelect: (index) => setState(() {
-                    _selectedDashboardIndex = index;
-                    _dashboardDropdownOpen = false;
-                  }),
+              Positioned(
+                top: 250.h,
+                right: 32.w,
+                child: CompositedTransformFollower(
+                  link: _dropdownLink,
+                  showWhenUnlinked: false,
+                  offset: Offset(-10.w, 36.h), // trigger এর নিচে
+                  child: _DashboardDropdownMenu(
+                    width: 220.w,
+                    items: _dashboards,
+                    selectedIndex: _selectedDashboardIndex,
+                    onSelect: (index) => setState(() {
+                      _selectedDashboardIndex = index;
+                      _dashboardDropdownOpen = false;
+                    }),
+                  ),
                 ),
               ),
           ],
@@ -279,6 +322,8 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
     return Padding(
       padding: EdgeInsets.fromLTRB(18.w, 10.h, 18.w, 10.h),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: Center(
@@ -295,16 +340,18 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
           ),
           // close
           Container(
-            width: 36.w,
-            height: 36.w,
+            width: 30.w,
+            height: 30.w,
             decoration: const BoxDecoration(
               color: Color(0xFFFFFFFF),
               shape: BoxShape.circle,
             ),
             child: IconButton(
               onPressed: () => Navigator.of(context).pop(),
-              icon: Icon(Icons.close_rounded,
-                  size: 20.sp, color: _kTextPrimary),
+              icon: Center(
+                child: Icon(Icons.close_rounded,
+                    size: 20.sp, color: _kTextPrimary),
+              ),
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
             ),
@@ -343,12 +390,14 @@ class _EditSheetRow extends StatelessWidget {
     this.iconHeight,
     this.iconWidth,
     this.trailing,
+    this.icon,
     this.isDestructive = false,
     this.onTap,
   });
 
   final String? imagePath;
   final String label;
+  final IconData? icon;
   final Widget? trailing;
   final bool isDestructive;
   final double? iconWidth;
@@ -357,32 +406,37 @@ class _EditSheetRow extends StatelessWidget {
 
   static const Color _kTextPrimary = Color(0xFF111827);
   static const Color _kIconGrey = Color(0xFF6B7280);
-  static const Color _kDestructiveRed = Color(0xFFFF2D92);
+  static const Color _kDestructiveRed = Color(0xFFFE019A);
 
   @override
   Widget build(BuildContext context) {
-    final textColor = isDestructive ? _kDestructiveRed : _kTextPrimary;
+    final color = isDestructive ? _kDestructiveRed : _kTextPrimary;
+    final iconColor = isDestructive ? _kDestructiveRed : _kIconGrey;
+
+    final Widget leading;
+    if (imagePath != null) {
+      leading = Image.asset(
+        imagePath!,
+        width: iconWidth ?? 20.w,
+        height: iconHeight ?? 20.w,
+        fit: BoxFit.contain,
+        filterQuality: FilterQuality.high,
+      );
+    } else if (icon != null) {
+      leading = Icon(icon, size: iconWidth ?? 20.w, color: iconColor);
+    } else {
+      leading = SizedBox(width: 20.w, height: 20.w);
+    }
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(26.r),
+      borderRadius: BorderRadius.circular(12.r),
       child: Row(
         children: [
           SizedBox(
             width: 32.w,
             height: 32.w,
-            child: Center(
-              child: imagePath == null
-                  ? const SizedBox.shrink()
-                  : Image.asset(
-                imagePath!,
-                width: iconWidth ?? 20.w,
-                height: iconHeight ?? 20.w,
-                fit: BoxFit.contain,
-                color: isDestructive ? _kDestructiveRed : null,
-                filterQuality: FilterQuality.high,
-              ),
-            ),
+            child: Center(child: leading),
           ),
           SizedBox(width: 12.w),
           Expanded(
@@ -393,20 +447,18 @@ class _EditSheetRow extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
-                color: textColor,
+                color: color,
                 fontFamily: 'Inter',
               ),
             ),
           ),
-          if (trailing != null) ...[
-            SizedBox(width: 10.w),
-            trailing!,
-          ],
+          if (trailing != null) trailing!,
         ],
       ),
     );
   }
 }
+
 
 class _DashboardDropdownTrigger extends StatelessWidget {
   const _DashboardDropdownTrigger({
@@ -476,10 +528,10 @@ class _DashboardDropdownMenu extends StatelessWidget {
       color: Colors.transparent,
       child: Container(
         width: width,
-        constraints: BoxConstraints(maxHeight: 220.h),
+        constraints: BoxConstraints(maxHeight: 195.h),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(18.r),
+          borderRadius: BorderRadius.circular(26.r),
           boxShadow: [
             BoxShadow(
               color: const Color(0xFF111827).withOpacity(0.12),
@@ -489,7 +541,7 @@ class _DashboardDropdownMenu extends StatelessWidget {
           ],
         ),
         child: ListView.separated(
-          padding: EdgeInsets.symmetric(vertical: 10.h),
+          padding: EdgeInsets.symmetric(vertical: 20.h),
           shrinkWrap: true,
           itemCount: items.length,
           separatorBuilder: (_, __) => const SizedBox.shrink(),
@@ -507,7 +559,7 @@ class _DashboardDropdownMenu extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
                           color: const Color(0xFF111827),
                           fontFamily: 'Inter',
@@ -550,17 +602,19 @@ class _ChipPill extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
       decoration: BoxDecoration(
         color: bg,
-        borderRadius: BorderRadius.circular(10.r),
+        borderRadius: BorderRadius.circular(6.r),
         border: Border.all(color: border, width: 1.2.w),
       ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 12.sp,
-          fontWeight: FontWeight.w400,
-          color: textColor,
-          fontFamily: 'Inter',
-          height: 1.0,
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+            color: textColor,
+            fontFamily: 'Inter',
+            // height: 1.0,
+          ),
         ),
       ),
     );

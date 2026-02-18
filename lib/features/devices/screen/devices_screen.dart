@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:workpleis/core/widget/global_back_button.dart';
 import 'package:workpleis/features/devices/widget/popup.dart';
 
+import '../widget/assign_category_zone.dart';
+
 class DevicesScreen extends StatefulWidget {
   const DevicesScreen({super.key});
 
@@ -42,6 +44,17 @@ class _DevicesScreenState extends State<DevicesScreen> {
         padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: const EditDeviceSheetContent(),
       ),
+    );
+  }
+
+  void _showAssignCategoryPopup(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return const AssignCategoryZoneSheet();
+      },
     );
   }
 
@@ -104,9 +117,10 @@ class _DevicesScreenState extends State<DevicesScreen> {
                             SizedBox(width: 10.w),
                             _CircleIconButton(
                               icon: Icons.add_rounded,
-                              onTap: () {},
+                              onTap: ()=>_showAssignCategoryPopup(context),
                               size: 32,
-                              bg: const Color(0xFF0088FE),
+                              bg:const Color(0xFF111827),
+                              //bg: const Color(0xFF0088FE),
                               iconColor: Colors.white,
                               iconSize: 23,
                             ),
@@ -190,7 +204,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
                 children: [
                   // RGBW
                   _DeviceRow(
-                    outerPadding: EdgeInsets.only(top: 7.h, right: 8.w),
+                    outerPadding: EdgeInsets.only(top: 7.h, right: 10.w),
                     topRight: const _TimeTag(text: '18:32', blueIcon: true),
                     leading: const _GradientCircleIcon(size: 34),
                     title: 'RGBW',
@@ -235,6 +249,8 @@ class _DevicesScreenState extends State<DevicesScreen> {
                         const _CircleMiniBtn(icon: Icons.add),
                         SizedBox(width: 8.w),
                         const _ToggleColorswitch(isOn: true),
+                        SizedBox(width: 8.w),
+                        
                       ],
                     ),
                   ),
@@ -243,7 +259,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
 
                   // Alarm
              _DeviceRow(
-                    outerPadding: EdgeInsets.only(top: 7.h, right: 1.w),
+                    outerPadding: EdgeInsets.only(top: 7.h, right: 0.w),
                     topRight: const _PinOnly(),
                     leading: const _LockIcon(),
                     title: 'Alarm',
@@ -264,7 +280,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
                   _DeviceRow(
                     outerPadding: EdgeInsets.only(
                       top: 7.h,
-                      right: 8.w,
+                      right: 20.w,
                       bottom: 7.h,
                     ),
                     leading: const _PowerRingIcon(),
@@ -311,11 +327,13 @@ class _DevicesScreenState extends State<DevicesScreen> {
                     outerPadding: EdgeInsets.only(
                       top: 7.h,
                       right: 8.w,
-                      bottom: 5.h,
+                      bottom:7.h
                     ),
                     selected: _selectedDeviceTitle == 'Blind Living Room',
                     topRight: const _StarTimeTag(time: '20:36'),
-                    leading: const _BlindGreenIcon(),
+                    leading: const _BlindGreenIcon(
+                      
+                    ),
                     title: 'Blind Living Room',
                     onTap: () => setState(
                       () => _selectedDeviceTitle = 'Blind Living Room',
@@ -329,13 +347,14 @@ class _DevicesScreenState extends State<DevicesScreen> {
                       ],
                     ),
                     trailing: Padding(
-                      padding: EdgeInsets.only(right: 4.w, top: 10.h),
+                      padding: EdgeInsets.only(right: 4.w, top: 15.h),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           _CircleMiniBtn(icon: Icons.keyboard_arrow_up),
                           SizedBox(width: 10.w),
                           _CircleMiniBtn(icon: Icons.keyboard_arrow_down),
+                          SizedBox(width: 10.w),
                         ],
                       ),
                     ),
@@ -347,7 +366,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
                   _DeviceRow(
                     outerPadding: EdgeInsets.only(
                       top: 7.h,
-                      right: 8.w,
+                      right: 20.w,
                       bottom: 5.h,
                     ),
                     leading: const _PlayCircleIcon(),
@@ -369,7 +388,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
                   // Brightness (with pill slider)
                   _DeviceRow(
                     outerPadding: EdgeInsets.only(
-                      top: 1.h,
+                      top: 2.h,
                       right: 8.w,
                       bottom: 5.h,
                     ),
@@ -389,7 +408,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
                       ],
                     ),
                     trailing: Padding(
-                      padding: EdgeInsets.only(top: 12.h, right: 5.w),
+                      padding: EdgeInsets.only(top: 15.h, right: 15.w,),
                       child: const _BrightnessPill(),
                     ),
                   ),
@@ -399,7 +418,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
                   _DeviceRow(
                     outerPadding: EdgeInsets.only(
                       top: 10.h,
-                      right: 8.w,
+                      right: 22.w,
                       bottom: 5.h,
                     ),
                     leading: const _BulbIcon(),
@@ -688,6 +707,7 @@ class _SearchBarState extends State<_SearchBar> {
   }
 }
 
+
 class _FilterChipPill extends StatelessWidget {
   const _FilterChipPill({
     required this.label,
@@ -701,32 +721,56 @@ class _FilterChipPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor =
-        selected ? const Color(0xFF0088FE) : const Color(0xFFE1E1E1);
-    final textColor =
-        selected ? const Color(0xFF0088FE) : const Color(0xFF111827);
-    final bgColor = selected ? Color(0xFFF3F4F6) : const Color(0xFFF3F4F6);
-
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        height: 32.h,
+      child: selected
+          ? Container(
+        height: 36.h,
+        padding: EdgeInsets.all(1.5), // border thickness
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [
+              Color(0xFF111827), // blue
+              Color(0xFF111827), // pink
+            ],
+          ),
+          borderRadius: BorderRadius.circular(999),
+        ),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white, // inside color
+            borderRadius: BorderRadius.circular(999),
+          ),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w500,
+              color: const Color(0xFF111827),
+              fontFamily: 'Inter',
+            ),
+          ),
+        ),
+      )
+          : Container(
+        height: 36.h,
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: bgColor,
+          color: const Color(0xFFF3F4F6),
           borderRadius: BorderRadius.circular(999),
-          border: selected
-              ? Border.all(color: borderColor, width: 1.5)
-              : null,
+          border: Border.all(
+            color: const Color(0xFFE5E7EB),
+          ),
         ),
         child: Text(
           label,
           style: TextStyle(
             fontSize: 16.sp,
-            fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-            color: textColor,
-            height: 1,
+            fontWeight: FontWeight.w400,
+            color: const Color(0xFF111827),
             fontFamily: 'Inter',
           ),
         ),
@@ -793,7 +837,7 @@ class _CircleMiniBtn extends StatelessWidget {
 
     return Container(
       width: 35.w, // ✅ closer to Image-1
-      height: 35.w,
+      height: 35.h,
       decoration: const BoxDecoration(
         color: Color(0xFFF3F4F6),
         shape: BoxShape.circle,
@@ -859,8 +903,8 @@ class _ToggleSwitch extends StatelessWidget {
       child: Align(
         alignment: isOn ? Alignment.centerRight : Alignment.centerLeft,
         child: Container(
-          width: 28.w,
-          height: 28.w,
+          width: 30.w,
+          height: 30.h,
           decoration: const BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
@@ -1052,7 +1096,7 @@ class _TimeTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 2.h),
+      padding: EdgeInsets.only(top: 2.h, ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -1064,12 +1108,12 @@ class _TimeTag extends StatelessWidget {
             color: blueIcon ? const Color(0xFF0088FE) : const Color(0xFF9CA3AF),
             colorBlendMode: BlendMode.srcIn,
           ),
-          SizedBox(width: 6.w),
+          SizedBox(width: 11.w),
           Text(
             text,
             style: TextStyle(
               fontSize: 13.sp,
-              color: const Color(0xFF111827),
+              color: const Color(0xFF6B7280),
               fontWeight: FontWeight.w400,
               height: 1.0,
               fontFamily: 'Inter',
@@ -1087,22 +1131,25 @@ class _StarTimeTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(Icons.star_rounded, size: 24.sp, color: const Color(0xFFFBBF24)),
-        SizedBox(width: 6.w),
-        Text(
-          time,
-          style: TextStyle(
-            fontSize: 13.sp, // ✅ screenshot small
-            color: const Color(0xFF111827),
-            fontWeight: FontWeight.w400,
-            height: 1.0,
-            fontFamily: 'Inter',
+    return Padding(
+      padding:  EdgeInsets.only(bottom: 10.h),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.star_rounded, size: 24.sp, color: const Color(0xFFFFDA0B)),
+          SizedBox(width: 5.w),
+          Text(
+            time,
+            style: TextStyle(
+              fontSize: 13.sp, // ✅ screenshot small
+              color: const Color(0xFF6B7280),
+              fontWeight: FontWeight.w400,
+              height: 1.0,
+              fontFamily: 'Inter',
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -1112,10 +1159,21 @@ class _StarOnly extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      Icons.star_rounded,
-      size: 24.sp,
-      color: const Color(0xFFFBBF24),
+    return Container(
+      height: 24.h,
+      width: 24.h,
+      decoration: BoxDecoration(
+        border: Border.all(width: 1.sp, color: const Color(0xFF000000).withOpacity(0.25)),
+        //borderRadius: BorderRadius.circular(6.r),
+      ),
+      child: Center(
+        child: Icon(
+          Icons.star_rounded,
+          size: 24.sp,
+          color: Color(0xFFFFDA0B),
+          //color: const Color(0xFFFBBF24),
+        ),
+      ),
     );
   }
 }

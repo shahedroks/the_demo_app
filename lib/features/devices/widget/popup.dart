@@ -22,9 +22,11 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
 
   bool _dashboardDropdownOpen = false;
   int _selectedDashboardIndex = 0;
+  bool _lastActivitiesOn = true;
 
   final List<String> _dashboards = const [
     'Lighting section name',
+
     'Lighting section name',
     'Lighting section name',
     'Lighting section name',
@@ -36,9 +38,9 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
   // --------- Fallback colors (যদি তোমার constants না থাকে) ----------
   static const Color _kTextPrimary = Color(0xFF111827);
   static const Color _kTextSecondary = Color(0xFF6B7280);
-  static const Color _kIconGrey = Color(0xFF6B7280);
   static const Color _kCloseBtnBg = Colors.white;
-  static const Color _kDestructiveRed = Color(0xFFEF4444);
+  static const Color _kDestructiveRed = Color(0xFFFE019A);
+  static const Color _kBlue = Color(0xFF0088FE);
 
   @override
   void dispose() {
@@ -55,6 +57,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
       setState(() => _dashboardDropdownOpen = false);
     }
   }
+  final LayerLink _dropdownLink = LayerLink();
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +94,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                           color: _kCloseBtnBg,
                         ),
                         child: _EditSheetRow(
-                          imagePath: 'assets/images/rename.png',
+                          imagePath: 'assets/images/Erename.png',
                           iconHeight: 22.h,
                           iconWidth: 22.w,
                           label: 'Rename',
@@ -115,7 +118,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                         ),
                       ),
 
-                      SizedBox(height: 14.h),
+                      SizedBox(height: 10.h),
 
                       // -------- Actions card (with dropdown trigger) --------
                       Container(
@@ -143,18 +146,33 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                             ),
                             SizedBox(height: 14.h),
 
-                            // ✅ Add to dashboard (ONE LINE)
                             _EditSheetRow(
                               imagePath: 'assets/images/add_dashboard.png',
-                              iconHeight: 21.h,
                               iconWidth: 21.w,
+                              iconHeight: 21.h,
                               label: 'Add to dashboard',
-                              trailing: _DashboardDropdownTrigger(
-                                value: _dashboards[_selectedDashboardIndex],
-                                isOpen: _dashboardDropdownOpen,
-                                onTap: _toggleDashboardMenu,
+                              trailing: CompositedTransformTarget(
+                                link: _dropdownLink,
+                                child: _DashboardDropdownTrigger(
+                                  value: _dashboards[_selectedDashboardIndex],
+                                  isOpen: _dashboardDropdownOpen,
+                                  onTap: _toggleDashboardMenu,
+                                ),
                               ),
                             ),
+
+                            // ✅ Add to dashboard (ONE LINE)
+                            // _EditSheetRow(
+                            //   imagePath: 'assets/images/add_dashboard.png',
+                            //   iconHeight: 21.h,
+                            //   iconWidth: 21.w,
+                            //   label: 'Add to dashboard',
+                            //   trailing: _DashboardDropdownTrigger(
+                            //     value: _dashboards[_selectedDashboardIndex],
+                            //     isOpen: _dashboardDropdownOpen,
+                            //     onTap: _toggleDashboardMenu,
+                            //   ),
+                            // ),
 
                             SizedBox(height: 14.h),
                             _EditSheetRow(
@@ -162,6 +180,24 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                               iconWidth: 20.w,
                               iconHeight: 20.h,
                               label: 'Category & zone',
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  _ChipPill(
+                                    text: 'Light',
+                                    bg: Colors. white,
+                                    border: _kBlue,
+                                    textColor: _kBlue,
+                                  ),
+                                  SizedBox(width: 8.w),
+                                  _ChipPill(
+                                    text: 'Living room',
+                                    bg: _kDestructiveRed,
+                                    border: _kDestructiveRed,
+                                    textColor: Colors.white,
+                                  ),
+                                ],
+                              ),
                               onTap: () {},
                             ),
                             SizedBox(height: 14.h),
@@ -171,16 +207,65 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                               iconWidth: 26.w,
                               label: 'Last activities',
                               onTap: () {},
+                              trailing: Transform.scale(
+                                scale: 1.00,
+                                child:   GestureDetector(
+                                  onTap: () => setState(() => _lastActivitiesOn = !_lastActivitiesOn),
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 180),
+                                    width: 60.w,
+                                    height: 35.h,
+                                    padding: EdgeInsets.all(2.w),
+                                    decoration: BoxDecoration(
+                                      color:   _lastActivitiesOn
+                                          ? const Color(0xFF0088FE)
+                                          : const Color(0xFFE1E1E1),
+                                      borderRadius: BorderRadius.circular(30.r),
+                                    ),
+                                    child: AnimatedAlign(
+                                      duration: const Duration(milliseconds: 180),
+                                      curve: Curves.easeOut,
+                                      alignment:  _lastActivitiesOn
+                                          ? Alignment.centerRight
+                                          : Alignment.centerLeft,
+                                      child: Container(
+                                        width: 31.w,
+                                        height: 31.w,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                // SizedBox(
+                                //   height: 35.h,
+                                //   width: 60.w,
+                                //   child: Switch(
+                                //     value: _lastActivitiesOn,
+                                //     onChanged: (v) =>
+                                //         setState(() => _lastActivitiesOn = v),
+                                //     activeColor: Colors.white,
+                                //     activeTrackColor: _kBlue,
+                                //     inactiveThumbColor: Colors.white,
+                                //     inactiveTrackColor:
+                                //     const Color(0xFFE5E7EB),
+                                //   ),
+                                // ),
+                              ),
+                              
                             ),
                           ],
                         ),
                       ),
 
-                      SizedBox(height: 9.h),
+                      SizedBox(height: 10.h),
 
                       // -------- Settings/Remove card --------
                       Container(
-                        padding: EdgeInsets.all(14.sp),
+                        padding: EdgeInsets.only(top: 5.h, right: 10.w, left: 14.w, bottom: 10.h),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(26.r),
                           color: _kCloseBtnBg,
@@ -200,7 +285,7 @@ class _EditDeviceSheetContentState extends State<_EditDeviceSheetContent> {
                               imagePath: 'assets/images/delete1.png',
                               iconWidth: 16.w,
                               iconHeight: 19.h,
-                              label: 'Remove',
+                              label: 'Delete device',
                               isDestructive: true,
                               onTap: () {},
                             ),
@@ -315,7 +400,7 @@ class _EditSheetRow extends StatelessWidget {
 
   static const Color _kTextPrimary = Color(0xFF111827);
   static const Color _kIconGrey = Color(0xFF6B7280);
-  static const Color _kDestructiveRed = Color(0xFFEF4444);
+  static const Color _kDestructiveRed = Color(0xFFFE019A);
 
   @override
   Widget build(BuildContext context) {
@@ -347,7 +432,7 @@ class _EditSheetRow extends StatelessWidget {
             height: 32.w,
             child: Center(child: leading),
           ),
-          SizedBox(width: 12.w),
+          SizedBox(width: 8.w),
           Expanded(
             child: Text(
               label,
@@ -395,7 +480,7 @@ class _DashboardDropdownTrigger extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 15.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   color: const Color(0xFF6B7280),
                   fontFamily: 'Inter',
@@ -467,7 +552,7 @@ class _DashboardDropdownMenu extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: 15.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                           color: const Color(0xFF111827),
                           fontFamily: 'Inter',
@@ -485,6 +570,46 @@ class _DashboardDropdownMenu extends StatelessWidget {
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+}
+
+
+class _ChipPill extends StatelessWidget {
+  const _ChipPill({
+    required this.text,
+    required this.bg,
+    required this.border,
+    required this.textColor,
+  });
+
+  final String text;
+  final Color bg;
+  final Color border;
+  final Color textColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(6.r),
+        border: Border.all(color: border, width: 1.2.w),
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+            color: textColor,
+            fontFamily: 'Inter',
+            // height: 1.0,
+          ),
         ),
       ),
     );
