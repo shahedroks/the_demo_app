@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -18,7 +17,6 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  
   void showCategoryMenuSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -35,10 +33,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       backgroundColor: Colors.transparent,
       barrierColor: Colors.black.withOpacity(0.25),
       isScrollControlled: true,
-      builder: (_) => const CategoryAddMenu (),
+      builder: (_) => const CategoryAddMenu(),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,63 +43,63 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     final zones = <ZoneItem>[
       ZoneItem(
         title: "Lighting",
-        bg: "assets/1aeeb5ec5ac4820568ae0dce4df4a68ab62d6f58.png",
-        icon: "assets/9b9fcc20669add25b276a7b26a2200f48bd031bd.png",
-        size: 50,
+        image: "assets/lighting.png",
+        imageHeight: 156.w,
+        imageWidth: 182.h,
       ),
       ZoneItem(
         title: "Shading",
-        bg: "assets/e657980d521794ef1f85e260b198130e4ec1ea6b.png",
-        icon: "assets/5dca5635544663c8fd17c3cf1d56a4d8de63f6d6.png",
-        size: 50,
+        image: "assets/shading.png",
+        imageHeight: 138.w,
+        imageWidth: 169.h,
       ),
       ZoneItem(
         title: "HVAC",
-        bg: "assets/ee0292989521ad52a2b139b5dff551c6f430ac01.png",
-        icon: "assets/5ab649c1a8d50544230ab6f0f8679f2fc6e18b39.png",
-        size: 50,
+        image: "assets/hvac.png",
+        imageHeight: 150.w,
+        imageWidth: 169.h,
       ),
       ZoneItem(
         title: "Ventilation",
-        bg: "assets/fbe765777be21f3cab3d70759d175a85efe3c94d.png",
-        icon: "assets/1aa82ef50e48067c3eaca981e77eb2d3a8935f6b.png",
-        size: 45,
+        image: "assets/ventilation.png",
+        imageHeight: 130.w,
+        imageWidth: 130.h,
       ),
       ZoneItem(
         title: "Gates",
-        bg: "assets/fbba4bc8829cd4ba8ffbcc27a3dc72eee9583373.png",
-        icon: "assets/deebfc84b3e475975c2dd0c64b11ad57e6a0e310.png",
-        size: 50,
+        image: "assets/gates.png",
+        imageHeight: 102.w,
+        imageWidth: 182.h,
       ),
       ZoneItem(
         title: "Security",
-        bg: "assets/f44b41442550d4a74047e4cc25581dc3718cc164.png",
-        icon: "assets/0e4fe52feddd27f611de6b7da26b4c4838460225.png",
-        size: 50,
+        image: "assets/security.png",
+        imageHeight: 130.h,
+        imageWidth: 130.w,
       ),
       ZoneItem(
         title: "Irrigation",
-        bg: "assets/a887a69cc3442fd61ecb7c826fd19c1cbf36ad7b.png",
-        icon: "assets/c7b87d0743d1ea835acf70c6a0cf73355b7da2a0.png",
-        size: 50,
+        image: "assets/irrigation.png",
+        imageHeight: 143.h,
+        imageWidth: 143.w,
       ),
       ZoneItem(
-        title: "Machinery",
-        bg: "assets/7da142f72ec832d110ca3afafc705d04a0cde00a.png",
-        icon: "assets/b2a42c1635a509e66c28fb7b94dc8deaca4005cb.png",
-        size: 50,
+        title: "Machines",
+        image: "assets/machines.png",
+        imageHeight: 109.h,
+        imageWidth: 169.w,
       ),
       ZoneItem(
-        title: "Charging",
-        bg: "assets/f8d95301bf9b8390db5c783cfc38ae7cb62fa943.png",
-        icon: "assets/a67e242eb09b2e80330a045e988cc85c1c7a5da2.png",
-        size: 42,
+        title: "Charging",                   
+        image: "assets/charging.png",
+        imageHeight: 139.h,
+        imageWidth: 139.w,
       ),
       ZoneItem(
         title: "Maintenance",
-        bg: "assets/257b1f9af2311962c8c6828977d0045421129ccb.png",
-        icon: "assets/c4635b394340a851e56aa3fe4fe3d9fa1953292a.png",
-        size: 50,
+        image: "assets/maintenance.png",
+        imageHeight: 146.h,
+        imageWidth: 169.w,
       ),
     ];
 
@@ -123,8 +120,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               // ✅ Top bar (same to same)
               _TopBar(
                 onBack: () => Navigator.pop(context),
-                onMenu: () =>showCategoryMenuSheet(context),
-                onAdd: () =>showCategoryAddMenuSheet(context),
+                onMenu: () => showCategoryMenuSheet(context),
+                onAdd: () => showCategoryAddMenuSheet(context),
               ),
 
               SizedBox(height: 14.h),
@@ -142,10 +139,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     childAspectRatio: 1.13, // ✅ screenshot-like
                   ),
                   itemBuilder: (_, i) {
-                    return ZoneCard(
-                      item: zones[i],
-                      onTap: () {},
-                    );
+                    return ZoneCard(item: zones[i], onTap: () {});
                   },
                 ),
               ),
@@ -189,12 +183,8 @@ class _TopBar extends StatelessWidget {
           // Left back
           Align(
             alignment: Alignment.centerLeft,
-            child:   GlobalCircleIconBtn(
-              child: Image.asset(
-                'assets/aro.png',
-                width: 16.w,
-                height: 16.h,
-              ),
+            child: GlobalCircleIconBtn(
+              child: Image.asset('assets/aro.png', width: 16.w, height: 16.h),
               onTap: () => Navigator.maybePop(context),
               color: const Color(0xFFF3F4F6),
             ),
@@ -242,7 +232,7 @@ class _CircleIconButton extends StatelessWidget {
     required this.onTap,
     required this.borderColor,
     required this.iconColor,
-    this.image  ,
+    this.image,
   });
 
   final IconData icon;
@@ -263,129 +253,78 @@ class _CircleIconButton extends StatelessWidget {
           shape: BoxShape.circle,
           // border: Border.all(color: borderColor, width: 1),
         ),
-        child: image != null ? Image.asset(image!, width: 22.w, height: 22.h) : Icon(icon, size: 22.sp, color: iconColor),
+        child: image != null
+            ? Image.asset(image!, width: 22.w, height: 22.h)
+            : Icon(icon, size: 22.sp, color: iconColor),
       ),
     );
   }
 }
 
+// ZoneItem  and Zone Card
+
 class ZoneItem {
   final String title;
-  final String bg;
-  final String icon;
-  final double? size;
-  final double? width;
-  final double? height;
-
+  final String image;
+  final double? imageWidth;
+  final double? imageHeight;
   const ZoneItem({
     required this.title,
-    required this.bg,
-    required this.icon,
-    this.size,
-    this.width,
-    this.height,
+    required this.image,
+    this.imageWidth,
+    this.imageHeight, 
   });
 }
 
 class ZoneCard extends StatelessWidget {
-  const ZoneCard({
-    super.key,
-    required this.item,
-    required this.onTap,
-
-  });
+  const ZoneCard({super.key, required this.item, required this.onTap});
 
   final ZoneItem item;
   final VoidCallback onTap;
 
-
   @override
   Widget build(BuildContext context) {
-    final radius = 26.r;
-    final iconW = item.size ?? item.width;
-    final iconH = item.size ?? item.height;
-
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(radius),
-        child: Stack(
+      borderRadius: BorderRadius.circular(26.r),
+      child: Container(
+        width: 195.w,
+        height: 183.h,
+        padding: EdgeInsets.all(10.w),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF3F4F6),
+          borderRadius: BorderRadius.circular(26.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ✅ Background image with blur (same vibe)
-            Positioned.fill(
-              child: ImageFiltered(
-                imageFilter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
+            Expanded(
+              child: Center(
                 child: Image.asset(
-                  item.bg,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-
-            // ✅ Soft overlay (to match screenshot)
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.black.withOpacity(0.10),
-                      Colors.black.withOpacity(0.40),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-
-            // ✅ top-left icon bubble
-            Positioned(
-              top: 12.h,
-              left: 12.w,
-              child: FrostCircle(
-                size: 74,
-                child: Image.asset(
-                  item.icon,
-                  width: iconW?.w,
-                  height: iconH?.h,
+                  item.image,
+                  width: item.imageWidth,
+                  height: item.imageHeight ?? 117.h,
                   fit: BoxFit.contain,
                 ),
               ),
             ),
-
-            // ✅ bottom-left title
-            Positioned(
-              left: 12.w,
-              bottom: 35.h,
-              child: Text(
-                item.title,
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                  fontFamily: "Inter",
-                ),
-              ),
-            ),
-
-            // ✅ bottom-right arrow bubble
-            Positioned(
-              right: 10.w,
-              bottom: 10.h,
-              child: Container(
-                width: 32.w,
-                height: 32.h,
-                padding: EdgeInsets.all(8.w),
-                decoration: BoxDecoration(
-                  color: Colors.white30.withOpacity(0.35),
-                  shape: BoxShape.circle,
-                ),
-                child: Image.asset(
-                  "assets/Mask group copy 5.png"
-                  ,width: 21.w,
-                  height: 21.h,
-
-                ),
+            SizedBox(height: 8.h),
+            Text(
+              item.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xFF111827),
+                fontFamily: "Inter",
               ),
             ),
           ],
@@ -394,6 +333,85 @@ class ZoneCard extends StatelessWidget {
     );
   }
 }
+
+// class ZoneItem {
+//   final String title;
+//   final String bg;
+//   final String icon;
+//   final double? size;
+//   final double? width;
+//   final double? height;
+//
+//   const ZoneItem({
+//     required this.title,
+//     required this.bg,
+//     required this.icon,
+//     this.size,
+//     this.width,
+//     this.height,
+//   });
+// }
+//
+// class ZoneCard extends StatelessWidget {
+//   const ZoneCard({super.key, required this.item, required this.onTap});
+//
+//   final ZoneItem item;
+//   final VoidCallback onTap;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final iconH = item.size != null ? item.size!.h : 90.h;
+//     final iconW = item.width != null ? item.width!.w : null;
+//
+//     return InkWell(
+//       onTap: onTap,
+//       borderRadius: BorderRadius.circular(26.r),
+//       child: Container(
+//         width: 195.w,
+//         height: 183.h,
+//         padding: EdgeInsets.all(12.w),
+//         decoration: BoxDecoration(
+//           color: const Color(0xFFF3F4F6),
+//           borderRadius: BorderRadius.circular(26.r),
+//           boxShadow: [
+//             BoxShadow(
+//               color: Colors.black.withOpacity(0.03),
+//               blurRadius: 10,
+//               offset: const Offset(0, 6),
+//             ),
+//           ],
+//         ),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Expanded(
+//               child: Center(
+//                 child: Image.asset(
+//                   item.icon,
+//                   width: iconW,
+//                   height: iconH,
+//                   fit: BoxFit.contain,
+//                 ),
+//               ),
+//             ),
+//             SizedBox(height: 6.h),
+//             Text(
+//               item.title,
+//               maxLines: 1,
+//               overflow: TextOverflow.ellipsis,
+//               style: TextStyle(
+//                 fontSize: 18.sp,
+//                 fontWeight: FontWeight.w600,
+//                 color: const Color(0xFF111111),
+//                 fontFamily: "Inter",
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 
 class FrostCircle extends StatelessWidget {
@@ -434,7 +452,8 @@ class FrostCircle extends StatelessWidget {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    gradient: RadialGradient( // ✅ radialGradient না, gradient হবে
+                    gradient: RadialGradient(
+                      // ✅ radialGradient না, gradient হবে
                       center: Alignment.topLeft,
                       radius: 1.05,
                       colors: [
@@ -448,7 +467,6 @@ class FrostCircle extends StatelessWidget {
                       width: 1,
                     ),
                   ),
-
                 ),
               ),
 
@@ -508,7 +526,9 @@ class _BottomNav extends StatelessWidget {
       height: 72.h,
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.74),
-        border: const Border(top: BorderSide(color: Color(0xFFE1E1E1), width: 1)),
+        border: const Border(
+          top: BorderSide(color: Color(0xFFE1E1E1), width: 1),
+        ),
       ),
       child: LayoutBuilder(
         builder: (context, c) {
@@ -547,8 +567,14 @@ class _BottomNav extends StatelessWidget {
                           Stack(
                             clipBehavior: Clip.none,
                             children: [
-                              Image.asset(item.icon, width: 26.sp, height: 26.sp, color: color),
-                              if (item.label == "Notifications" && notificationCount > 0)
+                              Image.asset(
+                                item.icon,
+                                width: 26.sp,
+                                height: 26.sp,
+                                color: color,
+                              ),
+                              if (item.label == "Notifications" &&
+                                  notificationCount > 0)
                                 Positioned(
                                   right: -10.w,
                                   top: -6.h,
@@ -556,7 +582,9 @@ class _BottomNav extends StatelessWidget {
                                     width: 19.w,
                                     height: 15.h,
                                     alignment: Alignment.center,
-                                    padding: EdgeInsets.symmetric(horizontal: 2.w, ),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 2.w,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: const Color(0xFFFE019A),
                                       borderRadius: BorderRadius.circular(18.r),
