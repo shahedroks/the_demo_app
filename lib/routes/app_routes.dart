@@ -16,6 +16,7 @@ import 'package:workpleis/features/profile/screen/profile_screen.dart';
 import 'package:workpleis/features/settings/screen/settings_screen.dart';
 import 'package:workpleis/features/cores/screen/cores_screen.dart';
 import 'package:workpleis/features/smart_device/presentation/smart_devices_screen.dart';
+import 'package:workpleis/features/user/screen/user_screen.dart';
 import 'package:workpleis/features/voice/screen/voice_screen.dart';
 
 import 'error_screen.dart';
@@ -51,19 +52,23 @@ class AppRouter {
         path: SplashScreen.routeName,
         name: SplashScreen.routeName,
         builder: (context, state) => const SplashScreen(),
-      ),GoRoute(
+      ),
+      GoRoute(
         path: CategoriesScreen.routeName,
         name: CategoriesScreen.routeName,
         builder: (context, state) => const CategoriesScreen(),
-      ),  GoRoute(
+      ),
+      GoRoute(
         path: ZonesScreen.routeName,
         name: ZonesScreen.routeName,
-        builder: (context, state) =>  ZonesScreen(),
-      ),  GoRoute(
+        builder: (context, state) => ZonesScreen(),
+      ),
+      GoRoute(
         path: ForgotPasswordScreen.routeName,
         name: ForgotPasswordScreen.routeName,
         builder: (context, state) => const ForgotPasswordScreen(),
-      ),  GoRoute(
+      ),
+      GoRoute(
         path: JoinAicanScreen.routeName,
         name: JoinAicanScreen.routeName,
         builder: (context, state) => const JoinAicanScreen(),
@@ -123,6 +128,11 @@ class AppRouter {
         path: LoginScreen.routeName,
         name: LoginScreen.routeName,
         builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: UsersScreen.routeName,
+        name: UsersScreen.routeName,
+        builder: (context, state) => const UsersScreen(),
       ),
     ],
   );

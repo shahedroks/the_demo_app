@@ -178,31 +178,33 @@ class _AddSectionSheetState extends State<AddSectionSheet> {
             SizedBox(height: 18.h),
             /// REMOVE
             Padding(
-              padding:  EdgeInsets.only(left: 18.w, right: 17.w, bottom: 41.h),
+              padding:  EdgeInsets.only(left: 18.w, right: 17.w, bottom: 25.h),
               child: Container(
-                height: 55.h,
+                height: 52.h,
                 width: double.infinity,
 
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                    color: Color(0xFF0088FE),
                   borderRadius: BorderRadius.circular(26.r),
-                  border: Border.all(color: Color(0xFF0088FE),width: 1.w)
+                 // border: Border.all(color: Color(0xFF0088FE),width: 1.w)
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/+ (1).png',
-
-                      height: 14.h,
-                    ),
-                    SizedBox(width: 8.w),
+                    // Image.asset(
+                    //   'assets/images/+ (1).png',
+                    //
+                    //   height: 14.h,
+                    //   color: Color(0xFFFFFFFF),
+                    // ),
+                    Icon(Icons.add, size: 26.sp,color: Colors.white,),
+                    SizedBox(width: 5.w),
                     Text(
-                      'Add Section',
+                      'Add',
                       style: TextStyle(
-                        color: Color(0xFF0088FE),
-                        fontWeight: FontWeight.w600,
+                        color: Color(0xFFFFFFFF),
+                        fontWeight: FontWeight.w700,
                         fontSize: 16.sp,
                         fontFamily: 'Inter',
                       ),
@@ -266,7 +268,7 @@ class _RowItem extends StatelessWidget {
         : Icon(icon!, size: 20.sp, color: _textSecondary);
 
     return Padding(
-      padding: EdgeInsets.only(left: 14.w, right: 14.w, top: 6.h, bottom: 6.h),
+      padding: EdgeInsets.only(left: 14.w, right: 14.w, top: 10.h, bottom: 10.h),
       child: Row(
         children: [
           leading,

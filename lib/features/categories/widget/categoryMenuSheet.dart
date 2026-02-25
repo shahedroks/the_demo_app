@@ -77,9 +77,10 @@ class CategoryMenuSheet extends StatelessWidget {
             
             /// CARD
             Container(
+             
               decoration: BoxDecoration(
                 color: _card,
-                borderRadius: BorderRadius.circular(20.r),
+                borderRadius: BorderRadius.circular(26.r),
               ),
               child: Column(
                 children: [
@@ -108,6 +109,12 @@ class CategoryMenuSheet extends StatelessWidget {
                     title: 'Upload image',
                     iconWidth: 18.w,
                     iconHeight: 18.h,
+                    trailing: Image.asset(
+                      'assets/images/image 147.png',
+                      height: 29.h,
+                      width: 52.w,
+                      fit: BoxFit.cover,
+                    ),
                   ),
 
                   
@@ -118,45 +125,72 @@ class CategoryMenuSheet extends StatelessWidget {
                     title: 'Upload icon',
                     iconWidth: 24.w,
                     iconHeight: 24.h,
+                    trailing: Image.asset(
+                      'assets/images/image 148.png',
+                      height: 26.h,
+                      width: 26.w,
+                      fit: BoxFit.cover,
+                    ),
                   ),
 
           
 
                   /// Remove
-                  _ItemRow(
-                    iconPath: 'assets/images/delete1.png',
-                    title: 'Delete category',
-                    iconWidth: 16.w,
-                    iconHeight: 19.h,
-                    titleColor: _destructive,
-                    iconColor: _destructive,
-                  ),
+                  // _ItemRow(
+                  //   iconPath: 'assets/images/delete1.png',
+                  //   title: 'Delete category',
+                  //   iconWidth: 16.w,
+                  //   iconHeight: 19.h,
+                  //   titleColor: _destructive,
+                  //   iconColor: _destructive,
+                  // ),
 
-                  SizedBox(height: 30.h,),
-                  InkWell(
-                    onTap: (){
-                      
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(left: 20.w, right: 16.w, bottom: 27.h),
-                      height: 55.h,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(26.r), 
-                        border: Border.all(width: 1.w, color: Color(0xFF0088FE))
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Save changes", style: TextStyle(fontFamily: "Inter",color: Color(0xFF0088FE), fontSize: 16.sp, fontWeight: FontWeight.w600 ),
-                        ),
-                      ),
-                    ),
-                  )
+                 // SizedBox(height: 19.h,),
+                  // InkWell(
+                  //   onTap: (){
+                  //
+                  //   },
+                  //   child: Container(
+                  //     margin: EdgeInsets.only(left: 20.w, right: 16.w, bottom: 35.h),
+                  //     height: 55.h,
+                  //     width: double.infinity,
+                  //     decoration: BoxDecoration(
+                  //       color: Color(0xFFFFFFFF),
+                  //       borderRadius: BorderRadius.circular(26.r),
+                  //       border: Border.all(width: 1.w, color: Color(0xFF0088FE))
+                  //     ),
+                  //     child: Center(
+                  //       child: Text(
+                  //         "Save changes", style: TextStyle(fontFamily: "Inter",color: Color(0xFF0088FE), fontSize: 16.sp, fontWeight: FontWeight.w600 ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),
+            SizedBox(height: 22.h,),
+            InkWell(
+              onTap: (){
 
-            SizedBox(height: 15.h),
+              },
+              child: Container(
+                margin: EdgeInsets.only(left: 20.w, right: 16.w,),
+                height: 52.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(26.r),
+                    border: Border.all(width: 1.w, color: Color(0xFF0088FE))
+                ),
+                child: Center(
+                  child: Text(
+                    "Save", style: TextStyle(fontFamily: "Inter",color: Color(0xFF0088FE), fontSize: 16.sp, fontWeight: FontWeight.w700 ),
+                  ),
+                ),
+              ),
+            ) , 
+            SizedBox(height: 41.h),
           ],
         ),
       ),
@@ -189,9 +223,9 @@ class _ItemRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      borderRadius: BorderRadius.circular(16.r),
+      borderRadius: BorderRadius.circular(26.r),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Row(
           children: [
 

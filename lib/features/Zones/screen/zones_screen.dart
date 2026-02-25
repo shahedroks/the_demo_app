@@ -54,7 +54,7 @@ class _ZonesScreenState extends State<ZonesScreen> {
       ),
       ZoneItem(
         title: "Kitchen",
-        image: "assets/62ce324979a0ecd38f8c2f40960a4a58eca3c836.png",
+        image: "assets/images/alcitchen.png",
         imageWidth: 208.w,
         imageHeight: 139.h,
       ),
@@ -78,7 +78,7 @@ class _ZonesScreenState extends State<ZonesScreen> {
       ),
       ZoneItem(
         title: "Garden",
-        image: "assets/aa4e7e9dd3a7adf204473d4aa4b3e2f33973a876.png",
+        image: "assets/images/garden-design-flower.png",
         imageWidth: 208.w,
         imageHeight: 119.h,
       ),
@@ -99,7 +99,7 @@ class _ZonesScreenState extends State<ZonesScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 18.w),
+          padding: EdgeInsets.symmetric(horizontal: 14.w),
           child: Column(
             children: [
               SizedBox(height: 8.h),
@@ -166,11 +166,32 @@ class _TopBar extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _CircleIconButton(icon: Icons.more_horiz, onTap: onMenu),
-                  SizedBox(width: 8.w),
-                  _CircleIconButton(icon: Icons.add_rounded, onTap: onAdd),
-                  
-                  
+                  InkWell(
+                    onTap: onMenu,
+                    borderRadius: BorderRadius.circular(26.r),
+                    child: Container(
+                      width: 32.w,
+                      height: 32.w,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFF3F4F6),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Image.asset(
+                          'assets/image 89.png',
+                          width: 22.w,
+                          height: 22.h,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ),
+                  // _CircleIconButton(
+                  //     icon: Icons.more_horiz,
+                  //     onTap: onMenu,
+                  // ),
+                  SizedBox(width: 12.w),
+                  _CircleIconButton(icon: Icons.add, onTap: onAdd),
                 ],
               ),
             ],
@@ -179,9 +200,9 @@ class _TopBar extends StatelessWidget {
             child: Text(
               "Zones",
               style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w700,
-                color: const Color(0xFF111111),
+                fontSize: 22.sp,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xFF111827),
                 fontFamily: "Inter",
               ),
             ),
@@ -203,8 +224,8 @@ class _CircleIconButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 36.w,
-        height: 36.w,
+        width: 32.w,
+        height: 32.w,
         decoration: const BoxDecoration(
           color: Color(0xFFF3F4F6),
           shape: BoxShape.circle,
@@ -242,7 +263,7 @@ class ZoneCard extends StatelessWidget {
       child: Container(
         width: 195.w,
         height: 183.h,
-        padding: EdgeInsets.all(12.w),
+        padding: EdgeInsets.all(8.w),
         decoration: BoxDecoration(
           color: const Color(0xFFF3F4F6),
           borderRadius: BorderRadius.circular(26.r),
@@ -267,16 +288,19 @@ class ZoneCard extends StatelessWidget {
                 ),
               ),
             ),
-           SizedBox(height: 6.h),
-            Text(
-              item.title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w600,
-                color: const Color(0xFF111827),
-                fontFamily: "Inter",
+            SizedBox(height: 8.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 11.w, vertical: 2.h),
+              child: Text(
+                item.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFF111827),
+                  fontFamily: "Inter",
+                ),
               ),
             ),
           ],
@@ -301,13 +325,14 @@ class _BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const selected = Color(0xFF0088FE);
+    const selected = Color(0xFF111827);
     const unselected = Color(0xFF111827);
 
     final items = <_NavItem>[
       const _NavItem(label: "Devices", icon: "assets/Group 28.png"),
       const _NavItem(label: "Analytics", icon: "assets/bar 5.png"),
       const _NavItem(label: "Dashboard", icon: "assets/Mask group copy 6.png"),
+      //const _NavItem(label: "Voice", icon: "assets/image 98.png"),
       const _NavItem(label: "Notifications", icon: "assets/Group 43.png"),
       const _NavItem(label: "Automations", icon: "assets/Mask group (8).png"),
     ];
@@ -327,9 +352,9 @@ class _BottomNav extends StatelessWidget {
             children: [
               Positioned(
                 top: 0,
-                left: w * selectedIndex + (w - 77.w) / 2,
+                left: w * selectedIndex + (w - 46.w) / 2,
                 child: Container(
-                  width: 77.w,
+                  width: 46.w,
                   height: 3.h,
                   decoration: BoxDecoration(
                     color: selected,

@@ -24,12 +24,7 @@ class _EditAddSectionSheetState extends State<EditAddSectionSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-        left: 16.w,
-        right: 16.w,
-        top: 10.h,
-        bottom: 0.h,
-      ),
+      padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 10.h, bottom: 0.h),
       decoration: BoxDecoration(
         color: _bg.withOpacity(0.74),
         borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
@@ -39,7 +34,6 @@ class _EditAddSectionSheetState extends State<EditAddSectionSheet> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-
             Padding(
               padding: EdgeInsets.only(left: 14.w, right: 0.w, bottom: 10.h),
               child: Row(
@@ -90,7 +84,6 @@ class _EditAddSectionSheetState extends State<EditAddSectionSheet> {
             _Card(
               child: Column(
                 children: [
-
                   /// WIDGET SIZE
                   // _RowItem(
                   //   imagePath: 'assets/images/widget_size.png',
@@ -145,7 +138,6 @@ class _EditAddSectionSheetState extends State<EditAddSectionSheet> {
                   //   imageWidth: 23.w,
                   //   imageHeight: 23.h,
                   // ),
-                
                   _SimpleRow(
                     imagePath: 'assets/images/rename.png',
                     title: 'Rename',
@@ -160,14 +152,14 @@ class _EditAddSectionSheetState extends State<EditAddSectionSheet> {
                     imageWidth: 23.w,
                     imageHeight: 23.h,
                   ),
-            
+
                   _SimpleRow(
                     imagePath: 'assets/images/move_up.png',
                     title: 'Move up',
                     imageWidth: 22.w,
                     imageHeight: 22.h,
                   ),
-                
+
                   _SimpleRow(
                     title: 'Move down',
                     imagePath: 'assets/images/move_down.png',
@@ -178,36 +170,35 @@ class _EditAddSectionSheetState extends State<EditAddSectionSheet> {
               ),
             ),
 
-            SizedBox(height: 10.h),
-            /// REMOVE
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(16.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(26.r),
-              ),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/images/cross.png',
-                    width: 26.w,
-                    height: 26.h,
-                  ),
-                  SizedBox(width: 8.w),
-                  Text(
-                    'Remove section',
-                    style: TextStyle(
-                      color: _danger,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16.sp,
-                      fontFamily: 'Inter',
-                    ),
-                  ),
-                ],
-              ),
-            )
-
+            // SizedBox(height: 10.h),
+            // /// REMOVE
+            // Container(
+            //   width: double.infinity,
+            //   padding: EdgeInsets.all(16.h),
+            //   decoration: BoxDecoration(
+            //     color: Colors.white,
+            //     borderRadius: BorderRadius.circular(26.r),
+            //   ),
+            //   child: Row(
+            //     children: [
+            //       Image.asset(
+            //         'assets/images/cross.png',
+            //         width: 26.w,
+            //         height: 26.h,
+            //       ),
+            //       SizedBox(width: 8.w),
+            //       Text(
+            //         'Remove section',
+            //         style: TextStyle(
+            //           color: _danger,
+            //           fontWeight: FontWeight.w400,
+            //           fontSize: 16.sp,
+            //           fontFamily: 'Inter',
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),
@@ -254,15 +245,20 @@ class _RowItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final Widget leading = imagePath != null
         ? Image.asset(
-      imagePath!,
-      width: imageWidth.w,
-      height: imageHeight.h,
-      fit: BoxFit.contain,
-    )
+            imagePath!,
+            width: imageWidth.w,
+            height: imageHeight.h,
+            fit: BoxFit.contain,
+          )
         : Icon(icon!, size: 20.sp, color: _textSecondary);
 
     return Padding(
-      padding: EdgeInsets.only(left: 14.w, right: 14.w, top: 6.h, bottom: 6.h),
+      padding: EdgeInsets.only(
+        left: 14.w,
+        right: 14.w,
+        top: 10.h,
+        bottom: 10.h,
+      ),
       child: Row(
         children: [
           leading,
@@ -307,11 +303,11 @@ class _SimpleRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final Widget leading = imagePath != null
         ? Image.asset(
-      imagePath!,
-      width: imageWidth.w,
-      height: imageHeight.h,
-      fit: BoxFit.contain,
-    )
+            imagePath!,
+            width: imageWidth.w,
+            height: imageHeight.h,
+            fit: BoxFit.contain,
+          )
         : Icon(icon!, size: 20.sp, color: _textSecondary);
 
     return Padding(

@@ -108,6 +108,12 @@ class ZoneAddMenu extends StatelessWidget {
                     title: 'Upload image',
                     iconWidth: 18.w,
                     iconHeight: 18.h,
+                    trailing: Image.asset(
+                      'assets/images/image 147.png',
+                      height: 29.h,
+                      width: 52.w,
+                      fit: BoxFit.cover,
+                    ),
                   ),
 
 
@@ -118,6 +124,12 @@ class ZoneAddMenu extends StatelessWidget {
                     title: 'Upload icon',
                     iconWidth: 24.w,
                     iconHeight: 24.h,
+                    trailing: Image.asset(
+                      'assets/images/image 148.png',
+                      height: 26.h,
+                      width: 26.w,
+                      fit: BoxFit.cover,
+                    ),
                   ),
 
 
@@ -132,42 +144,51 @@ class ZoneAddMenu extends StatelessWidget {
                   //   iconColor: _destructive,
                   // ),
 
-                  SizedBox(height: 30.h,),
-                  InkWell(
-                    onTap: (){
-
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(left: 20.w, right: 16.w, bottom: 27.h),
-                      height: 55.h,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(26.r),
-                          border: Border.all(width: 1.w, color: Color(0xFF0088FE))
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-
-                        children: [
-                          Image.asset(
-                            'assets/images/+ (1).png',
-
-                            height: 14.h,
-                          ),
-                          SizedBox(width: 5.w,),
-                          Text(
-                            "Add zone", style: TextStyle(fontFamily: "Inter",color: Color(0xFF0088FE), fontSize: 16.sp, fontWeight: FontWeight.w600 ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
+                  //SizedBox(height: 19.h,),
+                 
                 ],
               ),
             ),
+            SizedBox(height: 20.h),
+            InkWell(
+              onTap: (){
 
-            SizedBox(height: 15.h),
+              },
+              child: Container(
+                
+                margin: EdgeInsets.only(left: 20.w, right: 16.w,),
+                
+
+                height: 52.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Color(0xFF0088FE),
+                    borderRadius: BorderRadius.circular(26.r),
+                    border: Border.all(width: 1.w, color: Color(0xFF0088FE))
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+
+                  children: [
+                    // Image.asset(
+                    //   'assets/images/+ (1).png',  color: Colors.white,
+                    //
+                    //   height: 14.h,
+                    // ),
+                    Icon(Icons.add, size: 26.sp,color: Colors.white,),
+                    SizedBox(width: 5.w,),
+                    Text(
+                      "Add", style: TextStyle(fontFamily: "Inter",color: Color(0xFFFFFFFF), fontSize: 16.sp, fontWeight: FontWeight.w700 ),
+                    ),
+                  ],
+                ),
+              ),
+
+            ),
+            SizedBox(height: 47.h,),
+
+           
           ],
         ),
       ),
@@ -200,9 +221,10 @@ class _ItemRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      borderRadius: BorderRadius.circular(16.r),
+      borderRadius: BorderRadius.circular(26.r),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        // padding: EdgeInsets.only(left: 13.w,right: 28.w, top: 20.h, bottom: 20.h),
         child: Row(
           children: [
 
