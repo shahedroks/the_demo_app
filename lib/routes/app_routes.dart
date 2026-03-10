@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:workpleis/core/widget/global_snack_bar.dart';
+import 'package:workpleis/features/TCP/screen/tcp_ip_integration.dart';
 import 'package:workpleis/features/Zones/screen/zones_screen.dart';
 import 'package:workpleis/features/analytics/screen/analytics_screen.dart';
 import 'package:workpleis/features/categories/screen/categories_screen.dart';
@@ -10,6 +11,8 @@ import 'package:workpleis/features/auth/screens/register_screen.dart';
 import 'package:workpleis/features/auth/screens/splash_screen.dart';
 import 'package:workpleis/features/automations/screen/automations_screen.dart';
 import 'package:workpleis/features/home/screen/home_screen.dart';
+import 'package:workpleis/features/integrations/screen/Integrations_screen.dart';
+import 'package:workpleis/features/interfaces/screen/interfaces_screen.dart';
 import 'package:workpleis/features/menu/screen/menu_screen.dart';
 import 'package:workpleis/features/notifications/screen/notifications_screen.dart';
 import 'package:workpleis/features/profile/screen/profile_screen.dart';
@@ -133,6 +136,23 @@ class AppRouter {
         path: UsersScreen.routeName,
         name: UsersScreen.routeName,
         builder: (context, state) => const UsersScreen(),
+      ),
+      GoRoute(
+        path: InterfacesScreen.routeName,
+        name: InterfacesScreen.routeName,
+        builder: (context, state) => const InterfacesScreen(),
+      ),
+
+      GoRoute(
+        path: IntegrationsScreen.routeName,
+        name: IntegrationsScreen.routeName,
+        builder: (context, state) => const IntegrationsScreen(),
+      ),
+
+      GoRoute(
+        path: TcpIpIntegrationScreen.routeName,
+        name: TcpIpIntegrationScreen.routeName,
+        builder: (context, state) => const TcpIpIntegrationScreen(),
       ),
     ],
   );
